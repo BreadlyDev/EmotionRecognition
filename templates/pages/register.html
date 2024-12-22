@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face Recognition Register</title>
+  <link
+    href="https://fonts.googleapis.com/css?family=Kanit:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+  <main class="register">
+    <div class="register__logo logo">
+      <div class="logo__img-wrapper">
+        <img src="{% static 'images/logo.png' %}" alt="logo" class="logo__img">
+      </div>
+      <h1 class="logo__title">NeuralFace</h1>
+    </div>
+    <form id="registerForm" class="register__form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h2 class="register__title">Register</h2>
+      {{ form.email }}
+      {{ form.password }}
+      <div id="photoNotification" class="register__notification">Photo has been added</div>
+      <button type="button" id="addPhotoButton" class="register__button photo">Add Photo</button>
+      {{ form.photo }}
+      <button type="submit" class="register__button">Register</button>
+      <span class="register__redirect">
+        Already have an account? <a href="{% url 'login' %}" class="register__redirect-link">Login</a>
+      </span>
+    </form>
+  </main>
+
+  <div id="overlay" class="overlay"></div>
+
+  <div class="modal" id="cameraModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal">&times;</button>
+      <video id="video" autoplay></video>
+      <button id="captureButton" class="modal__button">Capture Photo</button>
+    </div>
+  </div>
+
+  <script src="{% static 'js/register.js' %}"></script>
+</body>
+
+</html>
