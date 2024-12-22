@@ -171,3 +171,6 @@ body {
     max-width: 320px;
   }
 }
+#photoInput {
+    display: none;
+}

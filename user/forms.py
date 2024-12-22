@@ -15,7 +15,7 @@ class LoginForm(forms.Form):
             'required': 'required'
         })
     )
-    photo = forms.CharField(
+    photo = forms.ImageField(
         widget=forms.HiddenInput(attrs={
             'id': 'photoInput'
         }),
@@ -37,8 +37,9 @@ class RegisterForm(forms.Form):
             'required': 'required'
         })
     )
-    photo = forms.CharField(
-        widget=forms.HiddenInput(attrs={
+    photo = forms.ImageField(
+        widget=forms.ClearableFileInput(attrs={
+            'class': 'photo-input',
             'id': 'photoInput'
         }),
         required=False

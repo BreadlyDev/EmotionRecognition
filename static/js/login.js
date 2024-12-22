@@ -29,25 +29,6 @@ closeModal.addEventListener("click", () => {
   }
 });
 
-//captureButton.addEventListener("click", () => {
-//  const canvas = document.createElement("canvas");
-//  canvas.width = video.videoWidth;
-//  canvas.height = video.videoHeight;
-//
-//  const context = canvas.getContext("2d");
-//  context.drawImage(video, 0, 0, canvas.width, canvas.height);
-//
-//  const photoData = canvas.toDataURL("image/png");
-//  photoInput.value = photoData;
-//  photoNotification.style.display = "block";
-//
-//  cameraModal.classList.remove("active");
-//  overlay.classList.remove("active");
-//  if (stream) {
-//    stream.getTracks().forEach((track) => track.stop());
-//  }
-//});
-
 captureButton.addEventListener("click", async () => {
   const canvas = document.createElement("canvas");
   canvas.width = video.videoWidth;
@@ -65,7 +46,7 @@ captureButton.addEventListener("click", async () => {
   }
 
   try {
-    const response = await fetch("/login-by-photo/", {
+    const response = await fetch("/login_by_photo/", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -78,7 +59,7 @@ captureButton.addEventListener("click", async () => {
     const result = await response.json();
     if (result.success) {
       alert("Login successful!");
-      window.location.href = "/home"; // Redirect to home page
+      window.location.href = "/";
     } else {
       alert(result.message || "Login failed!");
     }

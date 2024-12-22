@@ -2,7 +2,7 @@ import base64
 from io import BytesIO
 
 from django.contrib.auth import authenticate, login
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
@@ -17,11 +17,18 @@ def main_view(request):
 
 def register_view(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            photo = form.cleaned_data.get('photo', None)
+            photo = form.cleaned_data.get('photo')
+
+            if photo:
+                print(f"File received: {photo}")
+            else:
+                print("No file received")
+                return HttpResponse('Status: 403 Bad Request.\n Photo is required field')
+
             user = User.objects.create_user(email=email, password=password, photo=photo)
             login(request, user)
             return redirect('main')
@@ -35,7 +42,6 @@ def login_view(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-            # photo = form.cleaned_data.get('photo', None)
             user = authenticate(request, email=email, password=password)
             if user:
                 login(request, user)

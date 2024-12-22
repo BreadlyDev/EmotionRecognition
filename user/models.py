@@ -27,7 +27,7 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
-    photo = models.ImageField(upload_to=user_photo_path, null=True)
+    photo = models.ImageField(upload_to=user_photo_path)
 
     username = None
     last_login = None

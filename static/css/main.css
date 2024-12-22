@@ -32,6 +32,7 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  justify-content: center;
 }
 .logo__img {
   width: 100%;

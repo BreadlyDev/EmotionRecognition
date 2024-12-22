@@ -53,7 +53,7 @@ class SiameseNetwork(nn.Module):
 
 def check_photo(user_photo, input_photo):
     net = SiameseNetwork()
-    net.load_state_dict(torch.load("../ai/siamese-model.pth"))
+    net.load_state_dict(torch.load("./ai/siamese-model.pth"))
     net.eval()
 
     transform = transforms.Compose([

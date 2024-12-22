@@ -36,9 +36,15 @@ captureButton.addEventListener('click', () => {
   const context = canvas.getContext('2d');
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  const photoData = canvas.toDataURL('image/png');
-  photoInput.value = photoData;
-  photoNotification.style.display = 'block';
+  canvas.toBlob(function(blob) {
+    const file = new File([blob], 'photo.png', { type: 'image/png' });
+
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    photoInput.files = dataTransfer.files;
+
+    photoNotification.style.display = 'block';
+  }, 'image/png');
 
   cameraModal.classList.remove('active');
   overlay.classList.remove('active');
