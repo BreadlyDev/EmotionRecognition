@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Kanit:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'css/reset.css' %}">
   <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <script src="https://docs.opencv.org/master/opencv.js"></script>
 </head>
 
 <body>
@@ -43,6 +44,13 @@
       <button id="captureButton" class="modal__button">Capture Photo</button>
     </div>
   </div>
+  <!-- <div id="photoModal" class="modal">
+    <div class="modal-content">
+      <span id="closePhotoModal" class="close">&times;</span>
+      <h2>Отправленная фотография</h2>
+      <img id="sentPhoto" src="" alt="Отправленное фото" />
+    </div>
+  </div> -->
   <script src="{% static 'js/login.js' %}"></script>
 </body>
 
